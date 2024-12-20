@@ -1,0 +1,101 @@
+﻿<Window x:Class="TextEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ribbon="clr-namespace:System.Windows.Controls.Ribbon;assembly=System.Windows.Controls.Ribbon"
+        Title="Text Editor" Height="450" Width="800">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="121*"/>
+            <ColumnDefinition Width="279*"/>
+        </Grid.ColumnDefinitions>
+        <!-- Ribbon -->
+        <ribbon:Ribbon VerticalAlignment="Top" Grid.ColumnSpan="2">
+            <!-- File Tab -->
+            <ribbon:RibbonTab Header="File">
+                <ribbon:RibbonGroup Header="File Operations" >
+                    <ribbon:RibbonButton Label="New" Click="NewFile"
+                                             SmallImageSource="pack://application:,,,/Resources/NewFile.png" />
+                    <ribbon:RibbonButton Label="Open" Click="OpenFile"
+                                             SmallImageSource="pack://application:,,,/Resources/OpenFile.png" />
+                    <ribbon:RibbonButton Label="Save" Click="SaveFile"
+                                             SmallImageSource="pack://application:,,,/Resources/SaveFile.png" />
+                    <ribbon:RibbonButton Label="Save As" Click="SaveFileAs"
+                                             SmallImageSource="pack://application:,,,/Resources/SaveFileAs.png" />
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+
+            <!-- Edit Tab -->
+            <ribbon:RibbonTab Header="Edit">
+                <ribbon:RibbonGroup Header="Text Operations">
+                    <ribbon:RibbonButton Label="Undo" Click="UndoAction"
+                                         SmallImageSource="pack://application:,,,/Resources/Undo.png" />
+                    <ribbon:RibbonButton Label="Cut" Click="CutText"
+                                         SmallImageSource="pack://application:,,,/Resources/Cut.png" />
+                    <ribbon:RibbonButton Label="Copy" Click="CopyText"
+                                         SmallImageSource="pack://application:,,,/Resources/Copy.png" />
+                    <ribbon:RibbonButton Label="Paste" Click="PasteText"
+                                         SmallImageSource="pack://application:,,,/Resources/Paste.png" />
+                    <ribbon:RibbonButton Label="Delete" Click="DeleteText"
+                                         SmallImageSource="pack://application:,,,/Resources/Delete.png" />
+                </ribbon:RibbonGroup>
+
+                <ribbon:RibbonGroup Header="Formatting">
+                    <ribbon:RibbonButton Label="Bold" Click="ToggleBold" />
+                    <ribbon:RibbonButton Label="Italic" Click="ToggleItalic" />
+                    <ribbon:RibbonButton Label="Underline" Click="ToggleUnderline" />
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+
+            <!-- Insert Tab -->
+            <ribbon:RibbonTab Header="Insert">
+                <ribbon:RibbonGroup Header="Insert Symbols">
+                    <ribbon:RibbonButton Label="Alpha (α)" Click="InsertAlpha"
+                                         SmallImageSource="pack://application:,,,/Resources/Alpha.png" />
+                    <ribbon:RibbonButton Label="Beta (β)" Click="InsertBeta"
+                                         SmallImageSource="pack://application:,,,/Resources/Beta.png" />
+                    <ribbon:RibbonButton Label="Mu (µ)" Click="InsertMu"
+                                         SmallImageSource="pack://application:,,,/Resources/Mu.png" />
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+
+            <!-- Format Tab -->
+            <ribbon:RibbonTab Header="Format">
+                <ribbon:RibbonGroup Header="Text Alignment">
+                    <ribbon:RibbonButton Label="Align Left" Click="AlignLeft_Click" 
+                                         SmallImageSource="pack://application:,,,/Resources/AlignLeft.png" />
+                    <ribbon:RibbonButton Label="Align Center" Click="AlignCenter_Click" 
+                                         SmallImageSource="pack://application:,,,/Resources/AlignCenter.png" />
+                    <ribbon:RibbonButton Label="Align Right" Click="AlignRight_Click" 
+                                         SmallImageSource="pack://application:,,,/Resources/AlignRight.png" />
+                    <ribbon:RibbonButton Label="Justify" Click="AlignJustify_Click" 
+                                         SmallImageSource="pack://application:,,,/Resources/AlignHOrizontalStretch.png" />
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+
+            <!-- Tools -->
+            <ribbon:RibbonTab Header="Tools">
+                <ribbon:RibbonGroup Header="Replace Symbols">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox x:Name="OldSymbolTextBox" Width="50" ToolTip="Symbol to replace" />
+                        <TextBox x:Name="NewSymbolTextBox" Width="50" ToolTip="Replacement symbol" />
+                        <ribbon:RibbonButton Label="Replace" Click="ReplaceSymbols" 
+                 SmallImageSource="pack://application:,,,/Resources/ReplaceAll.png" />
+                    </StackPanel>
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+
+            <!-- Help Tab -->
+            <ribbon:RibbonTab Header="Help">
+                <ribbon:RibbonGroup Header="About">
+                    <ribbon:RibbonButton Label="About" Click="AboutMenuItem_Click"
+                                         SmallImageSource="pack://application:,,,/Resources/AboutBox.png" />
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+        </ribbon:Ribbon>
+
+        <!-- RichTextBox for editing -->
+        <RichTextBox x:Name="richTextBox" VerticalScrollBarVisibility="Auto" 
+                     HorizontalScrollBarVisibility="Auto" Margin="0,138,0,0" Grid.ColumnSpan="2" />
+    </Grid>
+</Window>
